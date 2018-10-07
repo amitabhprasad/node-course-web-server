@@ -1,17 +1,19 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+
+const port = process.env.PORT || 1234;
 var app = express();
 
 hbs.registerPartials(__dirname+'/views/partials')
 app.set('view engine', 'hbs');
 
 
-app.use((req,res,next)=>{
-    res.render('maintenance.hbs',{
-        pageTitle: 'Maintenance Page'
-    });
-});
+// app.use((req,res,next)=>{
+//     res.render('maintenance.hbs',{
+//         pageTitle: 'Maintenance Page'
+//     });
+// });
 
 app.use(express.static(__dirname+'/public'));
 
@@ -63,8 +65,8 @@ app.get('/bad',(req,res)=>{
     });
 });
 
-app.listen(1234,()=>{
-    console.log('Server started in port 1234');
+app.listen(port,()=>{
+    console.log(`Server started in port ${port}`);
 });
 
 // nodemon server.js -e js,hbs
